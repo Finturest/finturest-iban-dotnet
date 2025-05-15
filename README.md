@@ -1,6 +1,6 @@
 # Finturest IBAN API C# SDK
 
-Official C# SDK for the Finturest IBAN API — supports .NET Standard 2.0+ and all modern .NET versions.
+Official C# SDK for the Finturest IBAN API - supports .NET Standard 2.0+ and all modern .NET versions.
 
 [Finturest IBAN API](https://finturest.com/products/iban-api)
 
