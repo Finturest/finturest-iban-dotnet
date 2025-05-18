@@ -4,17 +4,19 @@ Official C# SDK for the [Finturest IBAN API](https://finturest.com/products/iban
 
 ## Overview
 
-This SDK provides a fast and secure way to integrate Finturest IBAN validation and bank data lookup into your .NET applications. It supports .NET Standard 2.0 and later, ensuring compatibility with .NET Core and the latest .NET releases.
+This SDK provides a fast and secure way to integrate Finturest IBAN validation, generation, and bank data lookup into your .NET applications. It supports .NET Standard 2.0 and later, ensuring compatibility with .NET Core and the latest .NET releases.
 
 ## Features
 
 - **IBAN Format Validation**: Validates IBAN structure based on official formats for 100+ countries.
 
+- **IBAN Generation**: Dynamically generates valid IBANs using country-specific rules, given bank and account identifiers.
+
 - **Checksum Verification**: Performs MOD-97 checksum validation to ensure IBAN authenticity.
 
 - **SEPA & Non-SEPA Coverage**: Supports both SEPA and international IBANs for broad banking network compatibility.
 
-- **Real-Time Response**: Get accurate validation and bank metadata in milliseconds for streamlined financial operations.
+- **Real-Time Response**: Get accurate validation, generation, and bank metadata in milliseconds for streamlined financial operations.
 
 ## Installation
 
