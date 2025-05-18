@@ -1,0 +1,70 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build
+    runs-on: windows-latest
+
+    env:
+      Iban__ApiKey: ${{ secrets.FINTUREST__IBAN__APIKEY }}
+  
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: |
+            3.1.x
+            5.0.x
+            6.0.x
+            7.0.x
+            8.0.x
+            9.0.x
+
+    - name: Build
+      run: dotnet build Finturest.Iban.sln --configuration Release /p:ContinuousIntegrationBuild=true
+
+    - name: Integration tests
+      run: dotnet test tests/Finturest.Iban.IntegrationTests --configuration Release --no-build
+      
+    - name: Pack Finturest.Iban
+      run: dotnet pack src/Finturest.Iban --configuration Release --no-build --output nuget
+
+    - name: Pack Finturest.Iban.Abstractions
+      run: dotnet pack src/Finturest.Iban.Abstractions --configuration Release --no-build --output nuget
+
+    - name: Upload artifacts
+      if: github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/heads/releases/')
+      uses: actions/upload-artifact@v4
+      with:
+        name: nuget
+        path: nuget/
+
+  publish:
+    name: Publish
+    if: github.event_name == 'workflow_dispatch' && startsWith(github.ref, 'refs/heads/releases/')
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: nuget
+          path: nuget
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 9.0.x
+
+      - name: Publish NuGet packages to NuGet
+        run: dotnet nuget push nuget/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source "nuget.org"
