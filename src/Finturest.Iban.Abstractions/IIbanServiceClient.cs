@@ -18,4 +18,15 @@ public interface IIbanServiceClient
     /// <exception cref="HttpRequestException">The request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
     /// <exception cref="IbanException">Thrown when the input values violate business rules specific to the IBAN generation logic (e.g., unsupported country, invalid structure, or failed checksum).</exception>
     Task<GenerateIbanResponseApiModel> GenerateIbanAsync(GenerateIbanRequestApiModel request, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Validate IBAN
+    /// </summary>
+    /// <param name="request">Request model to validate IBAN</param>
+    /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+    /// <exception cref="ArgumentNullException">The request model was null.</exception>
+    /// <exception cref="InvalidOperationException">The request failed due to deserialization issue.</exception>
+    /// <exception cref="HttpRequestException">The request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
+    /// <exception cref="IbanException">Thrown when the IBAN is invalid due to structural, length, or checksum errors, or if it fails country-specific business validation rules.</exception>
+    Task<ValidateIbanResponseApiModel> ValidateIbanAsync(ValidateIbanRequestApiModel request, CancellationToken cancellationToken = default);
 }
