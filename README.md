@@ -73,7 +73,7 @@ services.AddFinturestIban(options =>
 
 ### Validating
 
-To validate an IBAN using the Finturest IBAN API, create a `ValidateEmailRequest` and call the `ValidateEmailAsync` method on the `IIbanServiceClient`.
+To validate an IBAN using the Finturest IBAN API, create a `ValidateIbanRequestModel` and call the `ValidateIbanRequestModel` method on the `IIbanServiceClient`.
 
 ```C#
 var serviceProvider = services.BuildServiceProvider();
