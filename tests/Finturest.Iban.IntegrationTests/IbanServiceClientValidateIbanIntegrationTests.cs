@@ -9,7 +9,7 @@ public partial class IbanServiceClientIntegrationTests
     public async Task ValidateIbanAsync_RequestIsValid_ReturnCorrectResult()
     {
         // Arrange
-        var request = new ValidateIbanRequestApiModel
+        var request = new ValidateIbanRequestModel
         {
             Iban = "FR7630006000011234567890189"
         };
@@ -36,7 +36,7 @@ public partial class IbanServiceClientIntegrationTests
     public async Task ValidateIbanAsync_CountryIsInvalid_ThrowIbanException()
     {
         // Arrange
-        var request = new ValidateIbanRequestApiModel
+        var request = new ValidateIbanRequestModel
         {
             Iban = "PP7630006000011234567890189"
         };
@@ -54,7 +54,7 @@ public partial class IbanServiceClientIntegrationTests
     public async Task ValidateIbanAsync_ChecksumIsInvalid_ThrowIbanException()
     {
         // Arrange
-        var request = new ValidateIbanRequestApiModel
+        var request = new ValidateIbanRequestModel
         {
             Iban = "FR2330006000011234567890189"
         };

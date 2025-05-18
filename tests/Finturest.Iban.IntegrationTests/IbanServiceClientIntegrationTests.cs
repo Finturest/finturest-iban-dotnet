@@ -36,7 +36,7 @@ public partial class IbanServiceClientIntegrationTests
     public async Task SendRequestAsync_ApiKeyIsNotValid_EnsureUnauthorizedStatusCode()
     {
         // Arrange
-        var request = new GenerateIbanRequestApiModel
+        var request = new GenerateIbanRequestModel
         {
             CountryCode = "PL",
             BankAccountNumber = "123456789"

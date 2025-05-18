@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents the request model for generating an IBAN (International Bank Account Number).
 /// </summary>
-public record GenerateIbanRequestApiModel
+public record GenerateIbanRequestModel
 {
     /// <summary>
     /// A required string representing the 2-character ISO 3166-1 country code for the country where the bank is located.

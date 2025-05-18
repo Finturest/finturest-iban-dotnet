@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents the request model for validating an IBAN (International Bank Account Number).
 /// </summary>
-public record ValidateIbanRequestApiModel
+public record ValidateIbanRequestModel
 {
     /// <summary>
     /// A required string representing the IBAN (International Bank Account Number) that needs to be validated. 

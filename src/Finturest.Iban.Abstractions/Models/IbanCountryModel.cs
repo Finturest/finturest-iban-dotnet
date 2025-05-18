@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents a country that supports IBAN, including relevant metadata such as SEPA membership.
 /// </summary>
-public record IbanCountryApiModel
+public record IbanCountryModel
 {
     /// <summary>
     /// A required string representing the official name of the country in English.

@@ -29,7 +29,7 @@ public class IbanServiceClient : IIbanServiceClient
         _jsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
     }
 
-    public async Task<GenerateIbanResponseApiModel> GenerateIbanAsync(GenerateIbanRequestApiModel request, CancellationToken cancellationToken = default)
+    public async Task<GenerateIbanResponseModel> GenerateIbanAsync(GenerateIbanRequestModel request, CancellationToken cancellationToken = default)
     {
 #if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(request);
@@ -53,10 +53,10 @@ public class IbanServiceClient : IIbanServiceClient
             response.EnsureSuccessStatusCode();
         }
 
-        return await response.Content.ReadFromJsonAsync<GenerateIbanResponseApiModel>(_jsonSerializerOptions, cancellationToken).ConfigureAwait(false) ?? throw new InvalidOperationException("Failed to deserialize response.");
+        return await response.Content.ReadFromJsonAsync<GenerateIbanResponseModel>(_jsonSerializerOptions, cancellationToken).ConfigureAwait(false) ?? throw new InvalidOperationException("Failed to deserialize response.");
     }
 
-    public async Task<ValidateIbanResponseApiModel> ValidateIbanAsync(ValidateIbanRequestApiModel request, CancellationToken cancellationToken = default)
+    public async Task<ValidateIbanResponseModel> ValidateIbanAsync(ValidateIbanRequestModel request, CancellationToken cancellationToken = default)
     {
 #if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(request);
@@ -80,7 +80,7 @@ public class IbanServiceClient : IIbanServiceClient
             response.EnsureSuccessStatusCode();
         }
 
-        return await response.Content.ReadFromJsonAsync<ValidateIbanResponseApiModel>(_jsonSerializerOptions, cancellationToken).ConfigureAwait(false) ?? throw new InvalidOperationException("Failed to deserialize response.");
+        return await response.Content.ReadFromJsonAsync<ValidateIbanResponseModel>(_jsonSerializerOptions, cancellationToken).ConfigureAwait(false) ?? throw new InvalidOperationException("Failed to deserialize response.");
     }
 
     private async Task HandleBadRequestStatusCode(HttpResponseMessage response, string defaultMessage, CancellationToken cancellationToken = default)

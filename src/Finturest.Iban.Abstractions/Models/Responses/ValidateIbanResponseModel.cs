@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents the response model returned after validating an IBAN.
 /// </summary>
-public record ValidateIbanResponseApiModel
+public record ValidateIbanResponseModel
 {
     /// <summary>
     /// A required string representing the validated IBAN (International Bank Account Number).
@@ -51,8 +51,8 @@ public record ValidateIbanResponseApiModel
     /// This includes the country name, code, and SEPA membership status.
     /// </summary>
 #if NET7_0_OR_GREATER
-    public required IbanCountryApiModel Country { get; init; }
+    public required IbanCountryModel Country { get; init; }
 #else
-    public IbanCountryApiModel Country { get; set; } = null!;
+    public IbanCountryModel Country { get; set; } = null!;
 #endif
 }

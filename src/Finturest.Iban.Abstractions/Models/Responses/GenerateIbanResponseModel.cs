@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents the response model containing the generated IBAN.
 /// </summary>
-public record GenerateIbanResponseApiModel
+public record GenerateIbanResponseModel
 {
     /// <summary>
     /// A required string representing the generated IBAN (International Bank Account Number).

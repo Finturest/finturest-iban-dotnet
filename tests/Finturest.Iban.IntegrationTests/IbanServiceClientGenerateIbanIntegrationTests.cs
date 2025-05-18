@@ -9,7 +9,7 @@ public partial class IbanServiceClientIntegrationTests
     public async Task GenerateIbanRequestApiModel_RequestIsValid_ReturnCorrectResult()
     {
         // Arrange
-        var request = new GenerateIbanRequestApiModel
+        var request = new GenerateIbanRequestModel
         {
             CountryCode = "FR",
             BankIdentifier = "30006",
@@ -30,7 +30,7 @@ public partial class IbanServiceClientIntegrationTests
     public async Task GenerateIbanRequestApiModel_CountryHasInvalidFormat_ThrowIbanException()
     {
         // Arrange
-        var request = new GenerateIbanRequestApiModel
+        var request = new GenerateIbanRequestModel
         {
             CountryCode = "PLTLY",
             BankIdentifier = "30006",
@@ -51,7 +51,7 @@ public partial class IbanServiceClientIntegrationTests
     public async Task GenerateIbanRequestApiModel_CountryIsNotSupported_ThrowIbanException()
     {
         // Arrange
-        var request = new GenerateIbanRequestApiModel
+        var request = new GenerateIbanRequestModel
         {
             CountryCode = "PP",
             BankIdentifier = "30006",
@@ -72,7 +72,7 @@ public partial class IbanServiceClientIntegrationTests
     public async Task GenerateIbanRequestApiModel_BranchIdentifierIsNotSupported_ThrowIbanException()
     {
         // Arrange
-        var request = new GenerateIbanRequestApiModel
+        var request = new GenerateIbanRequestModel
         {
             CountryCode = "SE",
             BankIdentifier = "912",
