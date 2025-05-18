@@ -1,9 +1,48 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
+    <TargetFrameworks>net5.0;net6.0;net7.0;net8.0;net9.0;netcoreapp3.1;netstandard2.0</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <AssemblyOriginatorKeyFile>../../tools/finturest-csharp.snk</AssemblyOriginatorKeyFile>
+    <Authors>Finturest Team</Authors>
+    <Company>Finturest</Company>
+    <Copyright>Plainzer LLC, 2025</Copyright>
+    <Description>Core abstractions and interfaces for the Finturest IBAN API, enabling decoupled development and extensibility. Compatible with .NET Standard 2.0+ and all modern .NET versions.</Description>
+    <PackageIcon>finturest-package-icon.png</PackageIcon>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://finturest.com/products/iban-api</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>finturest;iban;iban-validator;iban-validation;iban-generator;iban-generation;iban-api;iban-validation-api;iban-generation-api</PackageTags>
+    <Product>Finturest IBAN API</Product>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/Finturest/finturest-iban-dotnet</RepositoryUrl>
+    <SignAssembly>True</SignAssembly>
+    <Summary>Core abstractions and interfaces for the Finturest IBAN API, enabling decoupled development and extensibility. Compatible with .NET Standard 2.0+ and all modern .NET versions.</Summary>
+    <Version>1.0.1</Version>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="10.9.0.115408">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" Visible="false" PackagePath="" />
+    <None Include="..\..\LICENSE" Pack="true" Visible="false" PackagePath="" />
+    <None Include="finturest-package-icon.png" Pack="true" Visible="false" PackagePath="" />
+  </ItemGroup>
 
 </Project>
