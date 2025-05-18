@@ -1,4 +1,5 @@
-﻿using Finturest.Iban.Abstractions.Models.Requests;
+﻿using Finturest.Iban.Abstractions;
+using Finturest.Iban.Abstractions.Models.Requests;
 
 namespace Finturest.Iban.IntegrationTests;
 
@@ -29,5 +30,41 @@ public partial class IbanServiceClientIntegrationTests
         result.Country.LocalName.ShouldBe("France");
         result.Country.Alpha2Code.ShouldBe("FR");
         result.Country.IsSepaMember.ShouldBeTrue();
+    }
+
+    [Fact]
+    public async Task ValidateIbanAsync_CountryIsInvalid_ThrowIbanException()
+    {
+        // Arrange
+        var request = new ValidateIbanRequestApiModel
+        {
+            Iban = "PP7630006000011234567890189"
+        };
+
+        // Act
+        Func<Task> action = async () => await _sut.ValidateIbanAsync(request).ConfigureAwait(false);
+
+        // Assert
+        var assertion = await action.ShouldThrowAsync<IbanException>();
+
+        assertion.Message.ShouldBe("The country code is unknown/not supported.");
+    }
+
+    [Fact]
+    public async Task ValidateIbanAsync_ChecksumIsInvalid_ThrowIbanException()
+    {
+        // Arrange
+        var request = new ValidateIbanRequestApiModel
+        {
+            Iban = "FR2330006000011234567890189"
+        };
+
+        // Act
+        Func<Task> action = async () => await _sut.ValidateIbanAsync(request).ConfigureAwait(false);
+
+        // Assert
+        var assertion = await action.ShouldThrowAsync<IbanException>();
+
+        assertion.Message.ShouldBe("The IBAN check digits are incorrect.");
     }
 }
