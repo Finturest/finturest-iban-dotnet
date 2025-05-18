@@ -1,5 +1,8 @@
 # Finturest IBAN API C# SDK
 
+[![NuGet](https://img.shields.io/nuget/v/Finturest.Iban.svg)](https://www.nuget.org/packages/Finturest.Iban)
+[![CI](https://github.com/Finturest/finturest-iban-dotnet/actions/workflows/ci.yml/badge.svg)](https://github.com/Finturest/finturest-iban-dotnet/actions/workflows/ci.yml)
+
 Official C# SDK for the [Finturest IBAN API](https://finturest.com/products/iban-api) - supports .NET Standard 2.0+ and all modern .NET versions.
 
 ## Overview
