@@ -7,6 +7,7 @@ using Finturest.Iban.Abstractions;
 using Finturest.Iban.Abstractions.Models.Requests;
 using Finturest.Iban.Abstractions.Models.Responses;
 using Finturest.Iban.Constants;
+using Finturest.Iban.Models;
 
 namespace Finturest.Iban;
 
@@ -45,7 +46,11 @@ public class IbanServiceClient : IIbanServiceClient
 
         if (response.StatusCode is HttpStatusCode.BadRequest)
         {
+            var problemDetails = await response.Content.ReadFromJsonAsync<ProblemDetails>(_jsonSerializerOptions, cancellationToken).ConfigureAwait(false);
 
+            var message = problemDetails?.Detail ?? problemDetails?.Title ?? "Invalid parameters.";
+
+            throw new IbanException(message);
         }
         else
         {
