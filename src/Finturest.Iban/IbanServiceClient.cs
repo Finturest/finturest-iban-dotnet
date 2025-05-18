@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Json;
+﻿using System.Net;
+using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -42,7 +43,14 @@ public class IbanServiceClient : IIbanServiceClient
 
         var response = await _httpClient.PostAsJsonAsync(uri, request, _jsonSerializerOptions, cancellationToken).ConfigureAwait(false);
 
-        response.EnsureSuccessStatusCode();
+        if (response.StatusCode is HttpStatusCode.BadRequest)
+        {
+
+        }
+        else
+        {
+            response.EnsureSuccessStatusCode();
+        }
 
         return await response.Content.ReadFromJsonAsync<GenerateIbanResponseApiModel>(_jsonSerializerOptions, cancellationToken).ConfigureAwait(false) ?? throw new InvalidOperationException("Failed to deserialize response.");
     }

@@ -12,7 +12,7 @@ public record GenerateIbanResponseApiModel
     /// 15 and 34 characters in length, depending on the country.
     /// </summary>
 #if NET7_0_OR_GREATER
-    public required string Iban { get; set; }
+    public required string Iban { get; init; }
 #else
     public string Iban { get; set; } = null!;
 #endif
